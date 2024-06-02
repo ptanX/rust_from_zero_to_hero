@@ -1,0 +1,6 @@
+[package]
+name = "rust_from_zero_to_hero"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
