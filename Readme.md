@@ -58,6 +58,25 @@ enum IpAddrWithStructValue {
 
 
 ## Option Type
+- The Option type represents an optional value: it can either be `Some` (containing a value) or `None` (indicating absence).
+- Rust uses Option to handle potentially missing or invalid values, avoiding null pointer errors.
+- You’ll encounter functions in Rust that return Option types.Use Some(value) to wrap a value, or None to represent absence: <br>
+```rust
+let maybe_number: Option<i32> = Some(42);
+```
+- Use pattern matching to handle Option values explicitly.
+```rust
+match maybe_number {
+    Some(value) => println!("Value: {}", value),
+    None => println!("No value"),
+}
+```
+- Rust provides useful methods for working with Option:
+    -  `unwrap()`: Extracts the value (panics if None).
+    -  `unwrap_or(default)`: Returns the value or a default.
+    -  `map(func)`: Transforms the value.
+    -  `and_then(func)`: Applies a function returning another Option.
+    -  `filter(predicate)`: Filters based on a condition.
 ## Matching pattern
 ## if let construct
 
