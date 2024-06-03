@@ -1,3 +1,4 @@
+
 pub struct User {
     pub(crate) active: bool,
     pub(crate) username: String,
