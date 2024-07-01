@@ -146,5 +146,53 @@ great place to refer to as a reminder of how modules work.
 # 5 Error Handling
 # 6 Generic Types, Traits, Lifetimes
 # 7 Smart Pointer
+## Running Code on Cleanup with the Drop Trait
+You can provide an implementation for the Drop trait on any type, and that code can be used to release resources like files or network connections.
+
+We’re introducing Drop in the context of smart pointers because the functionality of the Drop trait is almost always used when implementing a smart pointer.<br>
+For example, when a Box<T> is dropped it will deallocate the space on the heap that the box points to.
+
+In some languages, for some types, the programmer must call code to free memory or resources every time they finish using an instance of those types.<br>
+Examples include file handles, sockets, or locks. If they forget, the system might become overloaded and crash. In Rust, you can specify that a particular bit of code be run whenever a value goes out of scope, and the compiler will insert this code automatically.
+```rust
+struct CustomSmartPointer {
+    data: String,
+}
+
+impl Drop for CustomSmartPointer {
+    fn drop(&mut self) {
+        println!("Dropping CustomSmartPointer with data `{}`!", self.data);
+    }
+}
+
+fn main() {
+    let c = CustomSmartPointer {
+        data: String::from("my stuff"),
+    };
+    let d = CustomSmartPointer {
+        data: String::from("other stuff"),
+    };
+    println!("CustomSmartPointers created.");
+}
+```
+Result:
+```
+cargo run
+   Compiling drop-example v0.1.0 (file:///projects/drop-example)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.60s
+     Running `target/debug/drop-example`
+CustomSmartPointers created.
+Dropping CustomSmartPointer with data `other stuff`!
+Dropping CustomSmartPointer with data `my stuff`!
+```
 # 8 Concurrency
+Here are the topics we’ll cover in this chapter:
+
+- How to create threads to run multiple pieces of code at the same time
+- Message-passing concurrency, where channels send messages between threads
+- Shared-state concurrency, where multiple threads have access to some piece of data
+- The Sync and Send traits, which extend Rust’s concurrency guarantees to user-defined types as well as types provided by the standard library
+## Using Threads to Run Code Simultaneously
+- To create a new thread, we call the thread::spawn
+- saving the return value of thread::spawn in a variable. The return type of thread::spawn is JoinHandle. A JoinHandle is an owned value that, when we call the join method on it, will wait for its thread to finish.
 # 9 Building Multi Threads Web Application
