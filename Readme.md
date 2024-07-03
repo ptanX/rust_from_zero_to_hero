@@ -80,7 +80,13 @@ match maybe_number {
 ## Matching pattern
 ## if let construct
 
-# 3 Manage Growing Project With Packages, Crates, Modules
+# 3 Understanding Ownership
+## What Is Ownership?
+## References and Borrowing
+### Mutable Borrowing
+### Lifetime and Scope
+
+# 4 Manage Growing Project With Packages, Crates, Modules
 Rust has a number of features that allow you to manage your code’s organization, including which details are exposed, which details are private, and what names are in each scope in your programs. These features, sometimes collectively referred to as the module system, include:
 
 - **Packages**: A Cargo feature that lets you build, test, and share crates 
@@ -142,10 +148,10 @@ great place to refer to as a reminder of how modules work.
 
 
 
-# 4 Rust Collections
-# 5 Error Handling
-# 6 Generic Types, Traits, Lifetimes
-# 7 Smart Pointer
+# 5 Rust Collections
+# 6 Error Handling
+# 7 Generic Types, Traits, Lifetimes
+# 8 Smart Pointer
 ## Running Code on Cleanup with the Drop Trait
 You can provide an implementation for the Drop trait on any type, and that code can be used to release resources like files or network connections.
 
@@ -185,7 +191,7 @@ CustomSmartPointers created.
 Dropping CustomSmartPointer with data `other stuff`!
 Dropping CustomSmartPointer with data `my stuff`!
 ```
-# 8 Concurrency
+# 9 Concurrency
 Here are the topics we’ll cover in this chapter:
 
 - How to create threads to run multiple pieces of code at the same time
@@ -195,4 +201,11 @@ Here are the topics we’ll cover in this chapter:
 ## Using Threads to Run Code Simultaneously
 - To create a new thread, we call the thread::spawn
 - saving the return value of thread::spawn in a variable. The return type of thread::spawn is JoinHandle. A JoinHandle is an owned value that, when we call the join method on it, will wait for its thread to finish.
-# 9 Building Multi Threads Web Application
+# 10 Building Multi Threads Web Application
+Here is our plan for building the web server:
+
+- Learn a bit about TCP and HTTP.
+- Listen for TCP connections on a socket.
+- Parse a small number of HTTP requests.
+- Create a proper HTTP response.
+- Improve the throughput of our server with a thread pool.

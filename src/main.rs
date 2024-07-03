@@ -9,12 +9,14 @@ mod struct_learning;
 mod enum_learning;
 mod thread_learning;
 mod function_pointer;
+mod http_server;
 
 use crate::dynamic_dispatch::object_trait::Animal;
 use crate::enum_learning::ip_addr_enum::{create_ip_addr_with_string, get_ip_addr_with_string_value};
 use crate::struct_learning::basic_structure::User;
 use crate::thread_learning::basic_thread_actions::{spawn_thread};
 use crate::function_pointer::function_pointer_module::ADD_TWO_NUMBER;
+use crate::http_server::http_server_application::start_http_application;
 
 
 
@@ -51,7 +53,9 @@ fn main() {
         thread::sleep(Duration::from_millis(1));
     }
     println!("################### Function pointer ###################");
-    println!("result of add 1 and 2 is: {}", ADD_TWO_NUMBER(1,2))
+    println!("result of add 1 and 2 is: {}", ADD_TWO_NUMBER(1,2));
+    println!("################### http application  ###################");
+    start_http_application()
 }
 
 
